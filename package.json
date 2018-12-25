@@ -1,0 +1,15 @@
+{
+  "name": "android-messages",
+  "version": "1.0.0",
+  "description": "Android Messages for Desktop.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jhdcruz",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^4.0.0",
+    "electron-packager": "^13.0.1"
+  }
+}
