@@ -1,15 +1,24 @@
 {
-  "name": "android-messages",
+  "name": "web-android-messages",
+  "productName": "Android Messages",
   "version": "1.0.0",
   "description": "Android Messages for Desktop.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=build/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . Android-Messages --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icon.ico --prune=true --out=release-builds --version-string.CompanyName=DEUZ-Projects --version-string.FileDescription=\"Android Messages for Desktop\". --version-string.ProductName=\"Android Messages\"",    
+    "package-linux": "electron-packager . Android-Messages --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icon1024x1024.png --prune=true --out=release-builds"
   },
   "author": "jhdcruz",
   "license": "MIT",
   "devDependencies": {
     "electron": "^4.0.0",
-    "electron-packager": "^13.0.1"
+    "electron-packager": "^13.0.1",
+    "node": "^10.13.0"
+  },
+  "dependencies": {
+    "electron-titlebar-windows": "^3.0.0"
   }
 }
