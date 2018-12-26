@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=build/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . Android-Messages --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icon.ico --prune=true --out=release-builds --version-string.CompanyName=DEUZ-Projects --version-string.FileDescription=\"Android Messages for Desktop\". --version-string.ProductName=\"Android Messages\"",    
+    "package-win": "electron-packager . Android-Messages --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icon.ico --prune=true --out=release-builds --version-string.CompanyName=DEUZ-Projects --version-string.FileDescription=\"Android Messages for Desktop\". --version-string.ProductName=\"Android Messages\"",
     "package-linux": "electron-packager . Android-Messages --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icon1024x1024.png --prune=true --out=release-builds"
   },
   "author": "jhdcruz",
