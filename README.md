@@ -1,8 +1,8 @@
 # Android Messages for Desktop
-Light mode:
+Light mode: <br>
 ![](preview.jpg)
-
-Dark mode:
+<br>
+Dark mode: <br>
 ![](preview-dark.jpg)
 
 ## Notice
