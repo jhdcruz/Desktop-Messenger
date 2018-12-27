@@ -1,6 +1,7 @@
 # Android Messages for Desktop
 Light mode:
 ![](preview.jpg)
+
 Dark mode:
 ![](preview-dark.jpg)
 
