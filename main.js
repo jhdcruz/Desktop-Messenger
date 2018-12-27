@@ -6,12 +6,21 @@ let win
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({ width: 620, height: 700, frame: false })
-  win.setMinimumSize(620, 700)
+  win = new BrowserWindow({
+    width: 620,
+    height: 700,
+    frame: false,
+    webPreferences: {
+      webviewTag: true,
+      nodeIntegration: true
+    }
+  })
+  win.setMinimumSize(420, 500)
 
   // and load the index.html of the app.
   win.loadFile(`app/index.html`)
-  win.webContents.openDevTools({ mode: 'undocked' })
+  // win.webContents.openDevTools({ mode: 'undocked' })
+
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store windows
