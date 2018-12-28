@@ -26,35 +26,18 @@ LicenseData "..\LICENSE.txt"
 
 ; This will be in the installer/uninstaller's title bar
 Name "${APPNAME}"
-Icon "icon.png"
+Icon "..\build\icon.ico"
 OutFile "desktop-messages.exe"
  
-Page directory
-Page instfiles
- 
-!macro VerifyUserIsAdmin
-UserInfo::GetAccountType
-Pop $0
-
-${If} $0 != "admin" ;Require admin rights on NT4+
-        MessageBox mb_iconstop "Administrator rights required!"
-        SetErrorLevel 740 ;ERROR_ELEVATION_REQUIRED
-        Quit
-${EndIf}
-!macroend
- 
-Function .onInit
-	SetShellVarContext all
-	!insertmacro VerifyUserIsAdmin
-FunctionEnd
- 
 Section "install"
+
+	SetShellVarContext all
 
 	; Files for the install directory - to build the installer, these should be in the same directory as the install script (this file)
 	SetOutPath $INSTDIR
 
 	; Files added here should be removed by the uninstaller (see section "uninstall")
-	File "dist\Desktop-Messages-win32-ia32\*"
+	File "Desktop-Messages-win32-ia32\*"
  
 	; Uninstaller - See function un.onInit and section "uninstall" for configuration
 	WriteUninstaller "$INSTDIR\uninstall.exe"
@@ -81,18 +64,7 @@ Section "install"
 
 SectionEnd
  
-; Uninstaller
- 
-Function un.onInit
-	SetShellVarContext all
- 
-	;Verify the uninstaller - last chance to back out
-	MessageBox MB_OKCANCEL "Uninstall ${APPNAME}?" IDOK next
-		Abort
-	next:
-	!insertmacro VerifyUserIsAdmin
-FunctionEnd
- 
+; Uninstaller 
 Section "uninstall"
  
 	; Remove Start Menu launcher
