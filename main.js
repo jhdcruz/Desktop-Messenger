@@ -15,7 +15,7 @@ function createWindow () {
       nodeIntegration: true
     }
   })
-  win.setMinimumSize(420, 500)
+  win.setMinimumSize(420, 620)
 
   // and load the index.html of the app.
   win.loadFile(`app/index.html`)

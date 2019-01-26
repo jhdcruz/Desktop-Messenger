@@ -1,15 +1,15 @@
 {
-  "name": "desktop-messages",
-  "productName": "Desktop Messages",
+  "name": "desktop-messenger",
+  "productName": "Desktop Messenger",
   "version": "1.0.0",
-  "description": "Android Messages for Desktop.",
+  "description": "FB Messenger for Desktop w/ Frameless Window.",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=build/icon_128x128.icns --prune=true --out=dist",
-    "package-win": "electron-packager . Desktop-Messages --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icon.png --prune=true --out=dist --version-string.FileDescription=\"Android Messages for Desktop\". --version-string.ProductName=\"Desktop Messages\"",
-    "package-linux": "electron-packager . Desktop-Messages --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icon.png --prune=true --out=dist"
+    "package-win": "electron-packager . Desktop-Messenger --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icon.png --prune=true --out=dist --version-string.FileDescription=\"FB Messenger for Desktop\". --version-string.ProductName=\"Desktop Messenger\"",
+    "package-linux": "electron-packager . Desktop-Messenger --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icon.png --prune=true --out=dist"
   },
   "author": "jhdcruz",
   "license": "MIT",
