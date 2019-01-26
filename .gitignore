@@ -9,6 +9,7 @@ node_modules
 # Output Files
 dist/
 release-builds/
+build/*.exe
 
 # Temp files
 stash/
