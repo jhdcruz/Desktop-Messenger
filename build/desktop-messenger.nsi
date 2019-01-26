@@ -57,9 +57,6 @@ section "install"
 	# Files for the install directory - to build the installer
 	setOutPath $INSTDIR
 
-    # Make home folder
-    CreateDirectory "$INSTDIR\Desktop Messenger"
-
 	# Files added here should be removed by the uninstaller (see section "uninstall")
 	file /a /r "..\dist\Desktop-Messenger-win32-ia32\"
 	file /a /r "icon.ico"
@@ -98,17 +95,21 @@ section "uninstall"
 	delete "$DESKTOP\${APPNAME}.lnk"
 
 	# Remove files
-	delete "$INSTDIR\*"
-	delete "$INSTDIR\locales\*"
-	delete "$INSTDIR\resources\*"
-	delete "$INSTDIR\swiftshader\*"
+	delete "$INSTDIR\*.*"
+	delete "$INSTDIR\locales\*.*"
+	delete "$INSTDIR\resources\*.*"
+	delete "$INSTDIR\swiftshader\*.*"
+	rmDir "$INSTDIR\swiftshader"
+	rmDir "$INSTDIR\resources"
+	rmDir "$INSTDIR\locales"
 
 	# Always delete uninstaller as the last action
 	delete $INSTDIR\uninstall.exe
  
 	# Try to remove the install directory - this will only happen if it is empty
-	rmDir "$INSTDIR"
+	rmDir $INSTDIR
  
 	# Remove uninstaller information from the registry
 	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}"
+
 sectionEnd
