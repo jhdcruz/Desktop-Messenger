@@ -2,8 +2,9 @@ const electronTitlebarWindows = require('electron-titlebar-windows');
 const { remote } = require('electron');
 /** Options */
 let titlebar = new electronTitlebarWindows({
-    color: 'rgb(48, 48, 48)',
-    backgroundColor: 'rgb(255, 255, 255)',
+    darkMode: true,
+    color: 'rgb(230, 230, 230)',
+    backgroundColor: 'rgb(50, 50, 50)',
     draggable: true,
     fullscreen: false
 });
@@ -18,8 +19,8 @@ titlebar.on('close', () => {
 });
 /** Event#fullscreen */
 titlebar.on('fullscreen', () => {
-    console.info('fullscreen');
-    remote.getCurrentWindow().setFullScreen(true);
+    let window = remote.BrowserWindow.getFocusedWindow();
+    window.isMaximized() ? window.unmaximize() : window.maximize();
 });
 /** Event#minimize */
 titlebar.on('minimize', () => {
@@ -29,8 +30,8 @@ titlebar.on('minimize', () => {
 /** Event#maximize */
 titlebar.on('maximize', () => {
     console.info('maximize');
-    remote.getCurrentWindow().setFullScreen(false);
-    remote.getCurrentWindow().maximize();
+    let window = remote.BrowserWindow.getFocusedWindow();
+    window.isMaximized() ? window.unmaximize() : window.maximize();
 });
 
 // source: `https://github.com/sidneys/electron-titlebar-windows/blob/master/app/main.html`
