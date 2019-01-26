@@ -1,0 +1,15 @@
+name: Desktop Messenger
+version: 1.0.0
+icon: ../build/icon.png
+summary: FB Messenger for Desktop
+description: |
+  FB Messenger for Desktop w/ Frameless Window
+
+grade: stable
+confinement: strict
+
+parts:
+  examples:
+    source: https://github.com/jhdcruz/Desktop-Messages.git
+    plugin: ament
+    version: release

@@ -9,8 +9,10 @@
     "start": "electron .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=build/icon.icns --prune=true --out=dist",
     "package-win": "electron-packager . Desktop-Messenger --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icon.ico --prune=true --out=dist --version-string.FileDescription=\"FB Messenger for Desktop\". --version-string.ProductName=\"Desktop Messenger\"",
-    "package-linux": "electron-packager . Desktop-Messenger --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icon.ico --prune=true --out=dist"
+    "package-linux": "electron-packager . Desktop-Messenger --overwrite --asar=true --platform=linux --arch=x64 --icon=build/icon.ico --prune=true --out=dist",
+    "snap": "build --linux snap"
   },
+  "repository": "https://github.com/jhdcruz/Desktop-Messenger",
   "author": "jhdcruz",
   "license": "MIT",
   "devDependencies": {
