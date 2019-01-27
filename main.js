@@ -1,10 +1,10 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Tray, Menu } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     width: 620,
@@ -15,10 +15,12 @@ function createWindow () {
       nodeIntegration: true
     }
   })
-  win.setMinimumSize(420, 620)
+  win.setMinimumSize(490, 700)
 
   // and load the index.html of the app.
   win.loadFile(`app/index.html`)
+
+  // Open DevTools
   // win.webContents.openDevTools({ mode: 'undocked' })
 
   // Emitted when the window is closed.
@@ -32,8 +34,62 @@ function createWindow () {
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+// Wait until the app is ready
+app.once('ready', () => {
+
+  // Starts Browser
+  createWindow()
+
+  let tray = null
+
+  // Creates a tray
+  tray = new Tray('./build/icon.ico')
+  const contextMenu = Menu.buildFromTemplate([{
+      label: 'Show/Hide Desktop Messenger',
+      click: function () {
+        win.isVisible() ? win.hide() : win.show()
+      }
+    },
+    {
+      label: 'Clear Data/Logout',
+      click: function () {
+        win.webContents.session.clearStorageData(function () {
+          console.log('cleared all cookies ');
+        })
+
+        app.quit()
+      }
+    },
+    {
+      type: 'separator'
+    },
+    {
+      label: 'Quit',
+      click: function () {
+        app.quit()
+      }
+    }
+  ])
+
+  tray.on('double-click', () => {
+    win.isVisible() ? win.hide() : win.show()
+  })
+
+  tray.on('right-click', function () {
+    contextMenu()
+  })
+
+  win.on('show', () => {
+    tray.setHighlightMode('always')
+  })
+
+  win.on('hide', () => {
+    tray.setHighlightMode('never')
+  })
+
+  tray.setToolTip('This is my application.')
+  tray.setContextMenu(contextMenu)
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
