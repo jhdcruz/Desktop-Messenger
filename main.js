@@ -43,7 +43,7 @@ app.once('ready', () => {
   let tray = null
 
   // Creates a tray
-  tray = new Tray('./build/icon.ico')
+  tray = new Tray('icon.ico')
   const contextMenu = Menu.buildFromTemplate([{
       label: 'Show/Hide Desktop Messenger',
       click: function () {
