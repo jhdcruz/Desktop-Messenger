@@ -54,10 +54,10 @@ app.once('ready', () => {
       label: 'Clear Data/Logout',
       click: function () {
         win.webContents.session.clearStorageData(function () {
-          console.log('cleared all cookies ');
+          console.log('cleared all data');
         })
 
-        app.quit()
+        app.relaunch() && app.quit()
       }
     },
     {
@@ -87,7 +87,7 @@ app.once('ready', () => {
     tray.setHighlightMode('never')
   })
 
-  tray.setToolTip('This is my application.')
+  tray.setToolTip('Desktop Messenger')
   tray.setContextMenu(contextMenu)
 })
 
