@@ -95,13 +95,8 @@ section "uninstall"
 	delete "$DESKTOP\${APPNAME}.lnk"
 
 	# Remove files
-	delete "$INSTDIR\*.*"
-	delete "$INSTDIR\locales\*.*"
-	delete "$INSTDIR\resources\*.*"
-	delete "$INSTDIR\swiftshader\*.*"
-	rmDir "$INSTDIR\swiftshader"
-	rmDir "$INSTDIR\resources"
-	rmDir "$INSTDIR\locales"
+	delete "$INSTDIR\**\**"
+	rmDir "$INSTDIR\*"
 
 	# Always delete uninstaller as the last action
 	delete $INSTDIR\uninstall.exe
