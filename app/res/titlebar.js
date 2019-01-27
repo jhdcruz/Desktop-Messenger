@@ -15,7 +15,7 @@ titlebar.appendTo();
 /** Event#close */
 titlebar.on('close', () => {
     console.info('close');
-    remote.getCurrentWindow().close();
+    remote.getCurrentWindow().hide();
 });
 /** Event#fullscreen */
 titlebar.on('fullscreen', () => {
