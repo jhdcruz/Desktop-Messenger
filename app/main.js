@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Tray, Menu, webview } = require('electron')
+const { app, BrowserWindow, Tray, Menu } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -21,9 +21,7 @@ function createWindow() {
   win.loadFile(`app/index.html`)
 
   // Open DevTools
-  win.webContents.openDevTools({
-    mode: 'undocked'
-  })
+  // win.webContents.openDevTools({ mode: 'undocked' })
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -91,18 +89,6 @@ app.once('ready', () => {
 
   tray.setToolTip('Desktop Messenger')
   tray.setContextMenu(contextMenu)
-
-  webview.addEventListener('permissionrequest', function (e) {
-    if (e.permission === 'media') {
-      e.request.allow();
-    }
-  });
-  webview.addEventListener('audioCapture', function () {
-    MediaPermissionRequest.allow()
-  });
-  webview.addEventListener('videoCapture', function () {
-    MediaPermissionRequest.allow()
-  });
 })
 
 // Quit when all windows are closed.
