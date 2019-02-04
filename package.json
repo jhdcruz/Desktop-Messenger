@@ -17,7 +17,7 @@
   "devDependencies": {
     "electron": "^4.0.4",
     "electron-packager": "^13.0.1",
-    "node": "^10.11.0"
+    "node": "^11.9.0"
   },
   "dependencies": {
     "electron-titlebar-windows": "^3.0.0"
