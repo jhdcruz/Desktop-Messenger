@@ -12,6 +12,19 @@
 <body>
     <webview src="https://messenger.com/login" allowpopups></webview>
     <script src="res/titlebar.js"></script>
+    <script>
+        webview.addEventListener('permissionrequest', function (e) {
+            if (e.permission === 'media') {
+                e.request.allow();
+            }
+        });
+        webview.addEventListener('audioCapture', function () {
+            MediaPermissionRequest.allow()
+        });
+        webview.addEventListener('videoCapture', function () {
+            MediaPermissionRequest.allow()
+        });
+    </script>
 </body>
 
 </html>
