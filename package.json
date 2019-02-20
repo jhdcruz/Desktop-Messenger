@@ -15,7 +15,7 @@
   "author": "jhdcruz",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^4.0.4",
+    "electron": "^4.0.5",
     "electron-packager": "^13.0.1",
     "node": "^11.9.0"
   },
