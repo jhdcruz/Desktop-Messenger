@@ -11,11 +11,12 @@ function createWindow() {
     height: 700,
     frame: false,
     webPreferences: {
+      plugins: true,
       webviewTag: true,
       nodeIntegration: true,
     }
   })
-  win.setMinimumSize(490, 700)
+  win.setMinimumSize(500, 600)
 
   // and load the index.html of the app.
   win.loadFile(`app/index.html`)
@@ -32,6 +33,20 @@ function createWindow() {
   })
 }
 
+const singleInstance = app.requestSingleInstanceLock()
+
+if (!singleInstance) {
+  app.quit()
+} else {
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (BrowserWindow) {
+      if (BrowserWindow.isMinimized()) BrowserWindow.restore()
+      BrowserWindow.focus()
+    }
+  })
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Wait until the app is ready
@@ -44,17 +59,28 @@ app.once('ready', () => {
 
   // Creates a tray
   tray = new Tray('icon.ico')
+
+  // Context Menu
   const contextMenu = Menu.buildFromTemplate([{
       label: 'Show/Hide Desktop Messenger',
+      accelerator: 'CmdOrCtrl+Q',
       click: function () {
         win.isVisible() ? win.hide() : win.show()
       }
     },
     {
+      label: 'Reload',
+      accelerator: 'CmdOrCtrl+R',
+      click: function () {
+        win.reload()
+      }
+    },
+    {
       label: 'Clear Data/Logout',
+      accelerator: 'CmdOrCtrl+D',
       click: function () {
         win.webContents.session.clearStorageData(function () {
-          console.log('cleared all data');
+          console.log('Data Cleaned');
         })
 
         app.relaunch() && app.quit()
@@ -65,6 +91,7 @@ app.once('ready', () => {
     },
     {
       label: 'Quit',
+      accelerator: 'CmdOrCtrl+X',
       click: function () {
         app.quit()
       }
@@ -89,16 +116,17 @@ app.once('ready', () => {
 
   tray.setToolTip('Desktop Messenger')
   tray.setContextMenu(contextMenu)
+
 })
 
 // Quit when all windows are closed.
-app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
+// app.on('window-all-closed', () => {
+     // On macOS it is common for applications and their menu bar
+     // to stay active until the user quits explicitly with Cmd + Q
+//   if (process.platform !== 'darwin') {
+//     app.quit()
+//   }
+// })
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
@@ -108,6 +136,3 @@ app.on('activate', () => {
     win.focus()
   }
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
