@@ -2,7 +2,7 @@ const electronTitlebarWindows = require('electron-titlebar-windows');
 const { remote } = require('electron');
 /** Options */
 let titlebar = new electronTitlebarWindows({
-    darkMode: true,
+    darkMode: false,
     color: 'rgb(230, 230, 230)',
     backgroundColor: 'rgb(50, 50, 50)',
     draggable: true,
