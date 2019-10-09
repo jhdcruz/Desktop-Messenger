@@ -1,7 +1,7 @@
 {
   "name": "desktop-messenger",
   "productName": "Desktop Messenger",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Facebook Messenger for Desktop w/ Frameless Window.",
   "main": "./app/main.js",
   "scripts": {
