@@ -1,14 +1,10 @@
-const {
-  app,
-  BrowserWindow,
-  Tray,
-  Menu
-} = require("electron");
+const { app, BrowserWindow, Tray, Menu } = require("electron");
 const gotTheLock = app.requestSingleInstanceLock();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+let tray;
 
 function createWindow() {
   // Create the browser window.
@@ -55,35 +51,35 @@ if (!gotTheLock) {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Wait until the app is ready
-app.once("ready", () => {
+app.on("ready", () => {
   // Starts Browser
   createWindow();
 
-  let tray = null;
-
   // Creates a tray
   tray = new Tray("icon.ico");
+  tray.setTitle("Desktop Messenger");
 
   // Context Menu
-  const contextMenu = Menu.buildFromTemplate([{
+  const contextMenu = Menu.buildFromTemplate([
+    {
       label: "Show/Hide Desktop Messenger",
       accelerator: "CmdOrCtrl+Q",
-      click: function () {
+      click: function() {
         win.isVisible() ? win.hide() : win.show();
       }
     },
     {
       label: "Reload",
       accelerator: "CmdOrCtrl+R",
-      click: function () {
+      click: function() {
         win.reload();
       }
     },
     {
       label: "Clear Data/Logout",
       accelerator: "CmdOrCtrl+D",
-      click: function () {
-        win.webContents.session.clearStorageData(function () {
+      click: function() {
+        win.webContents.session.clearStorageData(function() {
           console.log("Data Cleaned");
         });
 
@@ -96,7 +92,7 @@ app.once("ready", () => {
     {
       label: "Quit",
       accelerator: "CmdOrCtrl+X",
-      click: function () {
+      click: function() {
         app.quit();
       }
     }
@@ -106,7 +102,7 @@ app.once("ready", () => {
     win.isVisible() ? win.hide() : win.show();
   });
 
-  tray.on("right-click", function () {
+  tray.on("right-click", function() {
     contextMenu();
   });
 
