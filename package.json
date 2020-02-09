@@ -16,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^7.1.8",
-    "electron-packager": "^14.1.1"
+    "electron-packager": "^14.2.1"
   },
   "dependencies": {
     "electron-titlebar-windows": "^3.0.0"
